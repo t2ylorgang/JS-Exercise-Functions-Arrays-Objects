@@ -37,13 +37,13 @@ function exampleFunction(num1, num2) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(banana, name, email) {
-  const pizza = {
-    id: banana,
+function makePersonObject(id, name, email) {
+  const person = {
+    id: 1,
     name: name,
-    email: email
+    email: email,
   }
-  return pizza;
+  return person;
 }
 
 /**
@@ -60,7 +60,6 @@ function makePersonObject(banana, name, email) {
  * the returned value should look like `Hello, my name is Leia`.
 */
 function getName(obj) {
-  console.log(obj);
   return `Hello, my name is ${obj.name}`;
 }
 
@@ -80,11 +79,10 @@ function getName(obj) {
 function makeSmartPerson(name) {
   return {
     name: name,
-    sum: function(x,y) { return x+y },
-    speak: function(x,y) { return `Hello, my name is ${this.name}`; }
+    sum: function(a,b) {return a+b},
+    speak: function(a,b) {return `Hello, my name is ${this.name}`},
   }
-}
-
+};
 /**
  * ### Challenge `getCarInfoByIndex`
  * 
@@ -98,9 +96,9 @@ function makeSmartPerson(name) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoByIndex(inventory, index) {
-  return `This is a ${inventory[index].car_make} ${inventory[index].car_model}`;
-}
-
+  return `This is a ${inventory[index].car_make} ${inventory[index].car_model}`
+};
+//^^^FIGURE OUT THE SYNTAX INVOLVED IN THIS PROBLEM; WHY DO WE SELECT THE ITEMS USING BRACKET AND DOT NOTATION AT THE SAME TIME?
 /**
  * ### Challenge `getLastCarInfo`
  * 
@@ -113,10 +111,9 @@ function getCarInfoByIndex(inventory, index) {
  * it will return `This is a Lincoln Town Car`.
 */
 function getLastCarInfo(inventory) {
-  const lastIndex = (inventory.length-1);
-  return `This is a ${inventory[lastIndex].car_make} ${inventory[lastIndex].car_model}`;
+  return `This is a ${inventory.slice(-1)[0].car_make} ${inventory.slice(-1)[0].car_model}`
 }
-
+// FOUND COOL METHOD TO FIND LAST ITEM IN ARRAY WO NEEDING IF ELSE STATEMENT :)
 /**
  * ### Challenge `getCarInfoById`
  * 
@@ -131,13 +128,12 @@ function getLastCarInfo(inventory) {
 */
 function getCarInfoById(inventory, num) {
   for (let i = 0; i < inventory.length; i++) {
-    const car = inventory[i];
-    if(car.id === num) {
-      return `This is a ${car.car_make} ${car.car_model}` ;
+    const vehicle = inventory[i];
+    if (vehicle.id === num) {
+      return `This is a ${vehicle.car_make} ${vehicle.car_model}`
     }
-  }    
-}
-
+  }
+};
 /**
  * ### Challenge `sortCarInventory`
  * 
@@ -147,15 +143,14 @@ function getCarInfoById(inventory, num) {
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
 function sortCarInventory(arr) {
-  arr.sort(function(a, b){
-    let x = a.car_model.toLowerCase();
-    let y = b.car_model.toLowerCase();
-    if (x < y) {return -1;}
-    if (x > y) {return 1;}
-    return 0;
+  arr.sort(function(a,b) {
+    let x = a.car_model.toLowerCase()
+    let y = b.car_model.toLowerCase()
+    if (x < y) {return -1}
+    if (x > y) {return 1}
   });
   return arr;
-}
+};
 
 /**
  * ### Challenge `getModelYears`
@@ -167,11 +162,11 @@ function sortCarInventory(arr) {
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
 function getModelYears(arr) {
-  const modelyear = []
+  const datesOfMfr = []
   for (let i = 0; i < arr.length; i++) {
-    modelyear.push(arr[i].car_year)
+    datesOfMfr.push(arr[i].car_year)
   }
-  return modelyear;
+  return datesOfMfr;
 }
 
 /**
@@ -187,14 +182,14 @@ function getModelYears(arr) {
  * in the same order as they appear in the original inventory.
 */
 function getOlderCars(arr, num) {
-  const olderyear = []
+  const oldCars = [];
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].car_year <= num) {
-      olderyear.push(arr[i])
+      oldCars.push(arr[i])
     }
-  }
-  return olderyear;
-}
+  }  
+  return oldCars;
+};
 
 /**
  * ### Challenge `getGermanCars`
@@ -208,14 +203,13 @@ function getOlderCars(arr, num) {
  * in the same order as they appear in the original inventory.
 */
 function getGermanCars(arr) {
-  let newArr = [];
+  let dasAuto = [];
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].car_make === "Audi" || arr[i].car_make === "Mercedes-Benz" || arr[i].car_make === "Volkswagen" || arr[i].car_make === "BMW") {
-    newArr.push(arr[i]);
-    };
-  };
-  return newArr;
-}
+    if (arr[i].car_make === "Audi" || arr[i].car_make === "Mercedes-Benz" || arr[i].car_make === "Volkswagen" || arr[i].car_make === "BMW")
+    dasAuto.push(arr[i]);
+  }
+  return dasAuto;
+};
 
 /**
  * ### Challenge refactor to arrow functions
@@ -253,16 +247,15 @@ const argTimesTwo = (num) => num * 2;
  *         (2) returns the updated value of the `odometer`.
 */
 function carMaker(num) {
-  const object = {
-    odometer: num,
-    drive: function(distance) {
-      this.odometer+=distance;
-      return this.odometer;
-    }
+const addMiles = {
+  odometer: num,
+  drive: function(distance) {
+    this.odometer += distance;
+    return this.odometer;
   }
-  return object;
 }
-
+return addMiles;
+}
 /// ////// END OF CHALLENGE /////////
 /// ////// END OF CHALLENGE /////////
 /// ////// END OF CHALLENGE /////////
